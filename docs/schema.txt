@@ -1,0 +1,68 @@
+Table users {
+  id uuid [pk, not null, unique]
+  firstname string [not null]
+  lastname string [not null]
+  email string [not null]
+  role enum
+  employment_status enum
+  employer string
+  genders_id int [ref: > genders.id]
+  pronouns_id int [ref: > pronouns.id]
+  identifications_id int [ref: > identifications.id]
+}
+
+Table genders {
+  id int [pk, not null, unique]
+  gender string [not null, unique]
+}
+
+Table pronouns {
+  id int [pk, not null, unique]
+  pronoun string [not null, unique]
+}
+
+Table identifications {
+  id int [pk, not null, unique]
+  identity string [not null, unique]
+}
+
+Table cohorts {
+  id int [pk, not null, unique]
+  name string [not null]
+  cohorts_types_id int [ref: > cohorts_types.id]
+}
+
+Table cohorts_types {
+  id int [pk, not null, unique]
+  cohort enum
+}
+
+Table applications {
+  id int [pk, not null, unique]
+  users_id uuid [ref: > users.id]
+  cohorts_id int [ref: > cohorts.id]
+  date_created timestamp
+  accepted_test boolean
+  accepted_cohort boolean
+}
+
+Table questions {
+  id int [pk, not null, unique]
+  applications_id int [ref: > applications.id]
+  text text
+  required boolean
+}
+
+Table answers {
+  id int [pk, not null, unique]
+  questions_id int [ref: > questions.id]
+  answer text
+}
+
+Table users_answers {
+  id int [pk, not null, unique]
+  users_id int [ref: > users.id]
+  questions_id int [ref: > questions.id]
+  answers_id int [ref: > answers.id]
+  applications_id int [ref: > applications.id]
+}

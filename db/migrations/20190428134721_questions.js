@@ -55,4 +55,8 @@ exports.up = knex =>
         .inTable("applications");
     });
 
-exports.down = knex => knex.schema.dropTableIfExists("questions");
+exports.down = knex =>
+  knex.schema
+    .dropTableIfExists("users_answers")
+    .dropTableIfExists("answers")
+    .dropTableIfExists("questions");

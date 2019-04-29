@@ -12,10 +12,10 @@ exports.up = knex =>
         .notNullable()
         .defaultsTo(true);
       table
-        .integer("applications_id")
+        .integer("cohorts_id")
         .notNullable()
         .references("id")
-        .inTable("applications");
+        .inTable("cohorts");
     })
 
     .createTable("answers", table => {
@@ -32,17 +32,12 @@ exports.up = knex =>
         .inTable("questions");
     })
 
-    .createTable("users_answers", table => {
+    .createTable("applications_answers", table => {
       table
         .increments("id")
         .unique()
         .primary()
         .notNullable();
-      table
-        .integer("questions_id")
-        .notNullable()
-        .references("id")
-        .inTable("questions");
       table
         .integer("answers_id")
         .notNullable()
@@ -57,6 +52,6 @@ exports.up = knex =>
 
 exports.down = knex =>
   knex.schema
-    .dropTableIfExists("users_answers")
+    .dropTableIfExists("questions")
     .dropTableIfExists("answers")
-    .dropTableIfExists("questions");
+    .dropTableIfExists("applications_answers");

@@ -24,7 +24,7 @@ exports.up = knex =>
         .notNullable();
     })
 
-    .createTable("identifications", table => {
+    .createTable("identities", table => {
       table
         .increments("id")
         .unique()
@@ -70,15 +70,15 @@ exports.up = knex =>
         .references("id")
         .inTable("pronouns");
       table
-        .integer("identifications_id")
+        .integer("identities_id")
         .unsigned()
         .references("id")
-        .inTable("identifications");
+        .inTable("identities");
     });
 
 exports.down = knex =>
   knex.schema
     .dropTableIfExists("users")
-    .dropTableIfExists("identifications")
+    .dropTableIfExists("identities")
     .dropTableIfExists("pronouns")
     .dropTableIfExists("genders");

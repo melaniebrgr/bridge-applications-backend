@@ -51,16 +51,9 @@ const createIdentities = () =>
 
 const createNUsers = n => Array.from(Array(n), createUser);
 
-exports.seed = (knex, Promise) => {
-  const emptyTables = Promise.all([
-    knex("users").del(),
-    knex("identities").del(),
-    knex("pronouns").del(),
-    knex("genders").del()
-  ]);
-  return emptyTables
-    .then(() => knex("genders").insert(createGenders()))
-    .then(() => knex("pronouns").insert(createPronouns()))
-    .then(() => knex("identities").insert(createIdentities()))
-    .then(() => knex("users").insert(createNUsers(20)));
+module.exports = {
+  createIdentities,
+  createPronouns,
+  createGenders,
+  createNUsers
 };

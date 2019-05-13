@@ -1,41 +1,5 @@
 exports.up = knex =>
   knex.schema
-    .createTable("genders", table => {
-      table
-        .increments("id")
-        .unique()
-        .primary()
-        .notNullable();
-      table
-        .string("gender")
-        .unique()
-        .notNullable();
-    })
-
-    .createTable("pronouns", table => {
-      table
-        .increments("id")
-        .unique()
-        .primary()
-        .notNullable();
-      table
-        .string("pronoun")
-        .unique()
-        .notNullable();
-    })
-
-    .createTable("identities", table => {
-      table
-        .increments("id")
-        .unique()
-        .primary()
-        .notNullable();
-      table
-        .string("identity")
-        .unique()
-        .notNullable();
-    })
-
     .createTable("users", table => {
       table
         .uuid("id")
@@ -59,26 +23,41 @@ exports.up = knex =>
         ])
         .notNullable();
       table.string("employer");
+      table.string("pronouns");
+    })
+
+    .createTable("users_genders", table => {
       table
-        .integer("genders_id")
-        .unsigned()
-        .references("id")
-        .inTable("genders");
+        .increments("id")
+        .unique()
+        .primary()
+        .notNullable();
       table
-        .integer("pronouns_id")
-        .unsigned()
+        .uuid("users_id")
+        .unique()
+        .notNullable()
         .references("id")
-        .inTable("pronouns");
+        .inTable("users");
+      table.string("gender").notNullable();
+    })
+
+    .createTable("users_identities", table => {
       table
-        .integer("identities_id")
-        .unsigned()
+        .increments("id")
+        .unique()
+        .primary()
+        .notNullable();
+      table
+        .uuid("users_id")
+        .unique()
+        .notNullable()
         .references("id")
-        .inTable("identities");
+        .inTable("users");
+      table.string("identity").notNullable();
     });
 
 exports.down = knex =>
   knex.schema
     .dropTableIfExists("users")
-    .dropTableIfExists("identities")
-    .dropTableIfExists("pronouns")
-    .dropTableIfExists("genders");
+    .dropTableIfExists("users_identities")
+    .dropTableIfExists("users_genders");

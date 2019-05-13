@@ -5,15 +5,6 @@ exports.up = knex =>
       .unique()
       .primary()
       .notNullable();
-    table.datetime("date_created").notNullable();
-    table
-      .boolean("accepted_test")
-      .notNullable()
-      .defaultTo(false);
-    table
-      .boolean("accepted_cohort")
-      .notNullable()
-      .defaultTo(false);
     table
       .uuid("users_id")
       .notNullable()
@@ -24,6 +15,15 @@ exports.up = knex =>
       .notNullable()
       .references("id")
       .inTable("cohorts");
+    table.datetime("date_created").notNullable();
+    table
+      .boolean("accepted_test")
+      .notNullable()
+      .defaultTo(false);
+    table
+      .boolean("accepted_cohort")
+      .notNullable()
+      .defaultTo(false);
   });
 
 exports.down = knex => knex.schema.dropTableIfExists("applications");

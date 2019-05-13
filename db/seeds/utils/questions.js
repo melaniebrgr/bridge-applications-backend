@@ -2,34 +2,28 @@ const faker = require("faker");
 
 const createQuestion = cohorts => (_, i) => ({
   id: i,
+  cohorts_id: cohorts[i % cohorts.length].id,
   question: faker.lorem.sentence() + "?",
-  required: faker.random.boolean(),
-  cohorts_id: cohorts[i % cohorts.length].id
+  required: faker.random.boolean()
 });
 
 const createQuestions = cohorts =>
-  Array.from(Array(cohorts.length * 4), createQuestion(cohorts));
+  Array.from(Array(cohorts.length * 5), createQuestion(cohorts));
 
-const createAnswer = questions => (_, i) => ({
+const createAnswer = (questions, applications) => (_, i) => ({
   id: i,
-  answer: faker.lorem.words(),
-  questions_id: questions[i % questions.length].id
+  questions_id: questions[i % questions.length].id,
+  applications_id: applications[i % applications.length].id,
+  answer: faker.lorem.words()
 });
 
-const createAnswers = questions =>
-  Array.from(Array(questions.length * 4), createAnswer(questions));
-
-const createApplicationsAnswer = applications => (answer, i) => ({
-  id: i,
-  answers_id: answer.id,
-  applications_id: applications[i % applications.length].id
-});
-
-const createApplicationsAnswers = (answers, applications) =>
-  answers.map(createApplicationsAnswer(applications));
+const createAnswers = (questions, applications) =>
+  Array.from(
+    Array(questions.length * 10),
+    createAnswer(questions, applications)
+  );
 
 module.exports = {
   createQuestions,
-  createAnswers,
-  createApplicationsAnswers
+  createAnswers
 };

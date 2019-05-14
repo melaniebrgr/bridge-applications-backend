@@ -4,7 +4,7 @@ const usersController = require("./users.controller");
 
 const router = express.Router();
 
-router.get("", usersController.index);
+router.get("", usersController.list);
 router.get("/:id", usersController.get);
 
 module.exports = {

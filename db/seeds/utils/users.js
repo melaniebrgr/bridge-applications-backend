@@ -22,8 +22,8 @@ const identities = [
   "Prefer not to disclose"
 ];
 
-const createUser = () => ({
-  id: faker.random.uuid(),
+const createUser = (_, i) => ({
+  id: i,
   first_name: faker.name.firstName(),
   last_name: faker.name.lastName(),
   email: faker.internet.email(),
@@ -33,7 +33,7 @@ const createUser = () => ({
   pronouns: faker.random.arrayElement(pronouns)
 });
 
-const createUsers = n => Array.from(Array(n), createUser);
+const createUsers = n => Array.from(Array(n)).map(createUser);
 
 const createUsersGender = (user, i) => ({
   id: i,

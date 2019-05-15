@@ -2,7 +2,7 @@ exports.up = knex =>
   knex.schema
     .createTable("users", table => {
       table
-        .uuid("id")
+        .increments("id")
         .unique()
         .primary()
         .notNullable();
@@ -33,7 +33,7 @@ exports.up = knex =>
         .primary()
         .notNullable();
       table
-        .uuid("users_id")
+        .integer("users_id")
         .unique()
         .notNullable()
         .references("id")
@@ -48,7 +48,7 @@ exports.up = knex =>
         .primary()
         .notNullable();
       table
-        .uuid("users_id")
+        .integer("users_id")
         .unique()
         .notNullable()
         .references("id")

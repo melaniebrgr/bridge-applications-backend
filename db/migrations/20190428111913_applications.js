@@ -6,7 +6,7 @@ exports.up = knex =>
       .primary()
       .notNullable();
     table
-      .uuid("users_id")
+      .integer("users_id")
       .notNullable()
       .references("id")
       .inTable("users");

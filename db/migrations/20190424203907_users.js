@@ -58,6 +58,6 @@ exports.up = knex =>
 
 exports.down = knex =>
   knex.schema
-    .dropTableIfExists("users")
     .dropTableIfExists("users_identities")
-    .dropTableIfExists("users_genders");
+    .dropTableIfExists("users_genders")
+    .dropTableIfExists("users");

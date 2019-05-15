@@ -38,4 +38,4 @@ exports.up = knex =>
     });
 
 exports.down = knex =>
-  knex.schema.dropTableIfExists("questions").dropTableIfExists("answers");
+  knex.schema.dropTableIfExists("answers").dropTableIfExists("questions");

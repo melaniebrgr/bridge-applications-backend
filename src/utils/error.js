@@ -1,4 +1,5 @@
 const errorText = {
+  NOT_FOUND_COHORTS: "Unable to find cohorts",
   NOT_FOUND_USERS: "Unable to find users",
   NOT_FOUND_USER: "Unable to find user"
 };

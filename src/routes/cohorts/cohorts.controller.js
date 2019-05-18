@@ -9,6 +9,14 @@ exports.list = async (req, res, next) => {
   }
 };
 
+exports.create = async (req, res, next) => {
+  try {
+    res.json(await Cohorts.insertCohort(req.body));
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.get = async (req, res, next) => {
   try {
     res.json(await Cohorts.getCohortById(req.params.id));

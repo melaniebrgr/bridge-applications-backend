@@ -18,6 +18,18 @@ class Cohorts extends Model {
     if (cohort) return cohort[0];
     throw new NotFoundError(errorText.NOT_FOUND_COHORT);
   }
+
+  static async insertCohort({ id, cohort, date_start, date_end, category }) {
+    return Cohorts.query()
+      .insert({
+        id,
+        cohort,
+        date_start,
+        date_end,
+        category
+      })
+      .returning("*");
+  }
 }
 
 module.exports = Cohorts;

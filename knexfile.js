@@ -1,7 +1,7 @@
 module.exports = {
   client: "pg",
   connection: {
-    host: "db",
+    host: "db", // comment this out to run migrations
     user: "admin",
     password: "admin",
     database: "bridge-applications-local"

@@ -12,6 +12,12 @@ class Cohorts extends Model {
     if (cohorts) return cohorts;
     throw new NotFoundError(errorText.NOT_FOUND_COHORTS);
   }
+
+  static async getCohortById(id) {
+    const cohort = await Cohorts.query().where("id", id);
+    if (cohort) return cohort[0];
+    throw new NotFoundError(errorText.NOT_FOUND_COHORT);
+  }
 }
 
 module.exports = Cohorts;

@@ -8,3 +8,11 @@ exports.list = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.get = async (req, res, next) => {
+  try {
+    res.json(await Cohorts.getCohortById(req.params.id));
+  } catch (error) {
+    next(error);
+  }
+};

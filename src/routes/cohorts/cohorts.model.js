@@ -30,6 +30,10 @@ class Cohorts extends Model {
       })
       .returning("*");
   }
+
+  static async updateCohortById(id, update) {
+    return Cohorts.query().patchAndFetchById(id, update);
+  }
 }
 
 module.exports = Cohorts;

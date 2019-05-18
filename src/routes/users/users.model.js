@@ -42,6 +42,10 @@ class Users extends Model {
       })
       .returning("*");
   }
+
+  static async updateUser(id, update) {
+    return Users.query().patchAndFetchById(id, update);
+  }
 }
 
 module.exports = Users;

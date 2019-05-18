@@ -18,6 +18,30 @@ class Users extends Model {
     if (user) return user[0];
     throw new NotFoundError(errorText.NOT_FOUND_USER);
   }
+
+  static async insertUser({
+    id,
+    first_name,
+    last_name,
+    email,
+    role,
+    employment_status,
+    employer,
+    pronouns
+  }) {
+    return Users.query()
+      .insert({
+        id,
+        first_name,
+        last_name,
+        email,
+        role,
+        employment_status,
+        employer,
+        pronouns
+      })
+      .returning("*");
+  }
 }
 
 module.exports = Users;

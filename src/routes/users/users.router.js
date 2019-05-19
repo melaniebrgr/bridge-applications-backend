@@ -8,6 +8,4 @@ router.post("", usersController.create);
 router.get("/:id", usersController.get);
 router.put("/:id", usersController.update);
 
-module.exports = {
-  usersRouter: router
-};
+module.exports = router;

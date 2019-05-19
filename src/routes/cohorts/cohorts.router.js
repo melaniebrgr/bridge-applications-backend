@@ -8,6 +8,4 @@ router.post("", cohortsController.create);
 router.get("/:id", cohortsController.get);
 router.put("/:id", cohortsController.update);
 
-module.exports = {
-  cohortsRouter: router
-};
+module.exports = router;

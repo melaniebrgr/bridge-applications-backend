@@ -14,8 +14,8 @@ class Cohorts extends Model {
   }
 
   static async getCohortById(id) {
-    const cohort = await Cohorts.query().where("id", id);
-    if (cohort) return cohort[0];
+    const cohort = await Cohorts.query().findById(id);
+    if (cohort) return cohort;
     throw new NotFoundError(errorText.NOT_FOUND_COHORT);
   }
 

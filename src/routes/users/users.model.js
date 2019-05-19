@@ -13,8 +13,8 @@ class Users extends Model {
   }
 
   static async getUserById(id) {
-    const user = await Users.query().where("id", id);
-    if (user) return user[0];
+    const user = await Users.query().findById(id);
+    if (user) return user;
     throw new NotFoundError(errorText.NOT_FOUND_USER);
   }
 

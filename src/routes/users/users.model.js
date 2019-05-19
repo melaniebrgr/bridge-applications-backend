@@ -1,5 +1,4 @@
 const { Model } = require("objection");
-
 const { errorText, NotFoundError } = require("../../utils/error");
 
 class Users extends Model {

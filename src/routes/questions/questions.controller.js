@@ -8,3 +8,11 @@ exports.getAllQuestions = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getQuestionById = async (req, res, next) => {
+  try {
+    res.json(await Questions.getQuestionById(req.params.id));
+  } catch (error) {
+    next(error);
+  }
+};

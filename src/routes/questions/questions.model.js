@@ -12,6 +12,12 @@ class Questions extends Model {
     throw new NotFoundError(errorText.NOT_FOUND_QUESTIONS);
   }
 
+  static async getQuestionById(id) {
+    const question = await Questions.query().findById(id);
+    if (question) return question;
+    throw new NotFoundError(errorText.NOT_FOUND_QUESTION);
+  }
+
   static get relationMappings() {
     return {
       cohorts: {

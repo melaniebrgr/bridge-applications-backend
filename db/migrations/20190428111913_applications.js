@@ -14,9 +14,10 @@ exports.up = knex =>
       .onDelete("CASCADE");
     table
       .integer("cohorts_id")
-      .notNullable()
       .references("id")
-      .inTable("cohorts");
+      .inTable("cohorts")
+      .onUpdate("NO ACTION")
+      .onDelete("SET NULL");
     table.datetime("date_created").notNullable();
     table
       .boolean("accepted_test")

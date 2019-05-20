@@ -33,6 +33,14 @@ exports.update = async (req, res, next) => {
   }
 };
 
+exports.delete = async (req, res, next) => {
+  try {
+    res.json(await Cohorts.deleteCohortById(req.params.id));
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.getQuestionsForCohort = async (req, res, next) => {
   try {
     res.json(await Cohorts.getQuestionsForCohort(req.params.id));

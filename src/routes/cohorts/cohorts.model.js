@@ -35,6 +35,12 @@ class Cohorts extends Model {
     return Cohorts.query().patchAndFetchById(id, update);
   }
 
+  static async deleteCohortById(id) {
+    const numDeleted = await Cohorts.query().deleteById(id);
+    if (numDeleted) return numDeleted;
+    throw new NotFoundError(errorText.NOT_DELETED);
+  }
+
   static async getQuestionsForCohort(id) {
     const cohortWithQuestions = await Cohorts.query()
       .findById(id)

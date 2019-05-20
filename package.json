@@ -10,7 +10,8 @@
     "latest": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "create": "knex migrate:make",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "reset": "npm run rollback && npm run latest && npm run seed"
   },
   "author": "",
   "devDependencies": {

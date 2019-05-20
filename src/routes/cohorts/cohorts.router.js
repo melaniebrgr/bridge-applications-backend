@@ -6,7 +6,8 @@ const router = express.Router();
 router.get("", cohortsController.list);
 router.post("", cohortsController.create);
 router.get("/:id", cohortsController.get);
-router.get("/:id/questions", cohortsController.getQuestionsForCohort);
 router.put("/:id", cohortsController.update);
+router.delete("/:id", cohortsController.delete);
+router.get("/:id/questions", cohortsController.getQuestionsForCohort);
 
 module.exports = router;

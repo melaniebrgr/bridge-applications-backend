@@ -8,9 +8,10 @@ exports.up = knex =>
         .notNullable();
       table
         .integer("cohorts_id")
-        .notNullable()
         .references("id")
-        .inTable("cohorts");
+        .inTable("cohorts")
+        .onUpdate("NO ACTION")
+        .onDelete("SET NULL");
       table.text("question").notNullable();
       table
         .boolean("required")
@@ -26,9 +27,10 @@ exports.up = knex =>
         .notNullable();
       table
         .integer("questions_id")
-        .notNullable()
         .references("id")
-        .inTable("questions");
+        .inTable("questions")
+        .onUpdate("NO ACTION")
+        .onDelete("SET NULL");
       table
         .integer("applications_id")
         .notNullable()

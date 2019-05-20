@@ -32,3 +32,11 @@ exports.update = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.delete = async (req, res, next) => {
+  try {
+    res.json(await Users.deleteUserById(req.params.id));
+  } catch (error) {
+    next(error);
+  }
+};

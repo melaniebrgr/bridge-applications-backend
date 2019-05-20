@@ -37,7 +37,9 @@ exports.up = knex =>
         .unique()
         .notNullable()
         .references("id")
-        .inTable("users");
+        .inTable("users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
       table.string("gender").notNullable();
     })
 
@@ -52,7 +54,9 @@ exports.up = knex =>
         .unique()
         .notNullable()
         .references("id")
-        .inTable("users");
+        .inTable("users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
       table.string("identity").notNullable();
     });
 

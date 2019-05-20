@@ -3,6 +3,7 @@ const errorText = {
   NOT_FOUND_COHORT: "Unable to find cohort",
   NOT_FOUND_USERS: "Unable to find users",
   NOT_FOUND_USER: "Unable to find user",
+  USER_NOT_DELETED: "User not deleted",
   NOT_FOUND_QUESTIONS: "Unable to find questions",
   NOT_FOUND_QUESTION: "Unable to find questions"
 };

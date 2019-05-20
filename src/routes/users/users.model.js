@@ -45,6 +45,41 @@ class Users extends Model {
   static async updateUser(id, update) {
     return Users.query().patchAndFetchById(id, update);
   }
+
+  static async deleteUserById(id) {
+    const numDeleted = await Users.query().deleteById(id);
+    if (numDeleted) return numDeleted;
+    throw new NotFoundError(errorText.USER_NOT_DELETED);
+  }
+
+  static relationMappings() {
+    return {
+      users_genders: {
+        relation: Model.HasOneRelation,
+        modelClass: require("../usersGenders/usersGenders.model"),
+        join: {
+          from: "users.id",
+          to: "users_genders.users_id"
+        }
+      },
+      users_identities: {
+        relation: Model.HasManyRelation,
+        modelClass: require("../usersIdentities/usersIdentities.model"),
+        join: {
+          from: "users.id",
+          to: "users_identities.users_id"
+        }
+      },
+      applications: {
+        relation: Model.HasManyRelation,
+        modelClass: require("../applications/applications.model"),
+        join: {
+          from: "users.id",
+          to: "applications.users_id"
+        }
+      }
+    };
+  }
 }
 
 module.exports = Users;

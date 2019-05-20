@@ -33,7 +33,9 @@ exports.up = knex =>
         .integer("applications_id")
         .notNullable()
         .references("id")
-        .inTable("applications");
+        .inTable("applications")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
       table.text("answer").notNullable();
     });
 

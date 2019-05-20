@@ -9,7 +9,9 @@ exports.up = knex =>
       .integer("users_id")
       .notNullable()
       .references("id")
-      .inTable("users");
+      .inTable("users")
+      .onUpdate("CASCADE")
+      .onDelete("CASCADE");
     table
       .integer("cohorts_id")
       .notNullable()

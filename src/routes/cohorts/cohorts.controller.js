@@ -32,3 +32,11 @@ exports.update = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getQuestionsForCohort = async (req, res, next) => {
+  try {
+    res.json(await Cohorts.getQuestionsForCohort(req.params.id));
+  } catch (error) {
+    next(error);
+  }
+};

@@ -24,7 +24,7 @@ class Questions extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: require("../cohorts/cohorts.model"),
         join: {
-          from: "questions.cohort_id",
+          from: "questions.cohorts_id",
           to: "cohorts.id"
         }
       }

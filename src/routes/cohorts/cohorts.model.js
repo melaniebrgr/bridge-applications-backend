@@ -34,6 +34,27 @@ class Cohorts extends Model {
   static async updateCohortById(id, update) {
     return Cohorts.query().patchAndFetchById(id, update);
   }
+
+  static async getQuestionsForCohort(id) {
+    const cohortWithQuestions = await Cohorts.query()
+      .findById(id)
+      .eager("questions");
+    if (cohortWithQuestions.questions) return cohortWithQuestions.questions;
+    throw new NotFoundError(errorText.NOT_FOUND_QUESTIONS);
+  }
+
+  static relationMappings() {
+    return {
+      questions: {
+        relation: Model.HasManyRelation,
+        modelClass: require("../questions/questions.model"),
+        join: {
+          from: "cohorts.id",
+          to: "questions.cohorts_id"
+        }
+      }
+    };
+  }
 }
 
 module.exports = Cohorts;

@@ -53,6 +53,15 @@ class Cohorts extends Model {
     throw new NotFoundError(errorText.NOT_FOUND_QUESTIONS);
   }
 
+  static async getApplicationsForCohort(id) {
+    const cohortWithApplications = await Cohorts.query()
+      .findById(id)
+      .eager("applications");
+    if (cohortWithApplications.applications)
+      return cohortWithApplications.applications;
+    throw new NotFoundError(errorText.NOT_FOUND_APPLICATIONS);
+  }
+
   static relationMappings() {
     return {
       questions: {

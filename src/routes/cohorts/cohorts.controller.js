@@ -48,3 +48,11 @@ exports.getQuestionsForCohort = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getApplicationsForCohort = async (req, res, next) => {
+  try {
+    res.json(await Cohorts.getApplicationsForCohort(req.params.id));
+  } catch (error) {
+    next(error);
+  }
+};

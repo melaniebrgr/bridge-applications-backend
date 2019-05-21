@@ -25,6 +25,14 @@ exports.get = async (req, res, next) => {
   }
 };
 
+exports.getApplications = async (req, res, next) => {
+  try {
+    res.json(await Users.getApplicationsByUserId(req.params.id));
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.update = async (req, res, next) => {
   try {
     res.json(await Users.updateUser(req.params.id, req.body));

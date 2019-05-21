@@ -52,6 +52,14 @@ class Users extends Model {
     throw new NotFoundError(errorText.USER_NOT_DELETED);
   }
 
+  static async getApplicationsByUserId(id) {
+    const user = await Users.query()
+      .findById(id)
+      .eager("applications");
+    if (user.applications) return user.applications;
+    throw new NotFoundError(errorText.NOT_FOUND_APPLICATIONS);
+  }
+
   static relationMappings() {
     return {
       users_genders: {

@@ -43,6 +43,14 @@ class Applications extends Model {
           from: "applications.users_id",
           to: "users.id"
         }
+      },
+      cohorts: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: require("../cohorts/cohorts.model"),
+        join: {
+          from: "applications.cohorts_id",
+          to: "cohorts.id"
+        }
       }
     };
   }

@@ -62,6 +62,14 @@ class Cohorts extends Model {
           from: "cohorts.id",
           to: "questions.cohorts_id"
         }
+      },
+      applications: {
+        relation: Model.HasManyRelation,
+        modelClass: require("../applications/applications.model"),
+        join: {
+          from: "cohorts.id",
+          to: "applications.cohorts_id"
+        }
       }
     };
   }

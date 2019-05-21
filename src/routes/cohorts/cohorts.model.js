@@ -45,7 +45,11 @@ class Cohorts extends Model {
     const cohortWithQuestions = await Cohorts.query()
       .findById(id)
       .eager("questions");
-    if (cohortWithQuestions.questions) return cohortWithQuestions.questions;
+    if (cohortWithQuestions.questions)
+      return cohortWithQuestions.questions.map(({ question, required }) => ({
+        question,
+        required
+      }));
     throw new NotFoundError(errorText.NOT_FOUND_QUESTIONS);
   }
 

@@ -6,7 +6,8 @@ const errorText = {
   USER_NOT_DELETED: "User not deleted",
   NOT_DELETED: "Nothing deleted",
   NOT_FOUND_QUESTIONS: "Unable to find questions",
-  NOT_FOUND_QUESTION: "Unable to find questions"
+  NOT_FOUND_QUESTION: "Unable to find questions",
+  NOT_FOUND_ANSWERS: "Unable to find answers"
 };
 
 class NotFoundError extends Error {

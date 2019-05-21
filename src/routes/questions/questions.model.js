@@ -1,4 +1,5 @@
 const { Model } = require("objection");
+const R = require("ramda");
 const { errorText, NotFoundError } = require("../../utils/error");
 
 class Questions extends Model {
@@ -18,6 +19,15 @@ class Questions extends Model {
     throw new NotFoundError(errorText.NOT_FOUND_QUESTION);
   }
 
+  static async getAnswersByQuestionId(id) {
+    const questionWithAnswers = await Questions.query()
+      .findById(id)
+      .eager("answers");
+    if (questionWithAnswers.answers)
+      return R.pluck("answer", questionWithAnswers.answers);
+    throw new NotFoundError(errorText.NOT_FOUND_ANSWERS);
+  }
+
   static get relationMappings() {
     return {
       cohorts: {
@@ -26,6 +36,14 @@ class Questions extends Model {
         join: {
           from: "questions.cohorts_id",
           to: "cohorts.id"
+        }
+      },
+      answers: {
+        relation: Model.HasManyRelation,
+        modelClass: require("../answers/answers.model"),
+        join: {
+          from: "questions.id",
+          to: "answers.questions_id"
         }
       }
     };

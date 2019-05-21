@@ -16,3 +16,11 @@ exports.getQuestionById = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getAnswersByQuestionId = async (req, res, next) => {
+  try {
+    res.json(await Questions.getAnswersByQuestionId(req.params.id));
+  } catch (error) {
+    next(error);
+  }
+};

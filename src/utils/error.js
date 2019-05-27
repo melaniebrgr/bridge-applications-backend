@@ -1,3 +1,5 @@
+const { validationResult } = require("express-validator/check");
+
 const errorText = {
   NOT_FOUND_COHORTS: "Unable to find cohorts",
   NOT_FOUND_COHORT: "Unable to find cohort",
@@ -21,7 +23,22 @@ class NotFoundError extends Error {
   }
 }
 
+class InvalidError extends Error {
+  constructor(message) {
+    super(message);
+    this.statusCode = 422;
+    this.message = message;
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+
+const checkForValidationErrors = req => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) throw new InvalidError(errors.array());
+};
+
 module.exports = {
   errorText,
-  NotFoundError
+  NotFoundError,
+  checkForValidationErrors
 };

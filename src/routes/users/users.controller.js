@@ -1,5 +1,6 @@
 const database = require("../../db");
 const Users = require("./users.model");
+const { checkForValidationErrors } = require("../../utils/error");
 
 exports.list = async (req, res, next) => {
   try {
@@ -11,6 +12,7 @@ exports.list = async (req, res, next) => {
 
 exports.create = async (req, res, next) => {
   try {
+    checkForValidationErrors(req);
     res.json(await Users.insertUser(req.body));
   } catch (error) {
     next(error);

@@ -7,7 +7,7 @@ const { logger } = require("./utils/logger");
 const { errorHandler } = require("./middleware/error-handler");
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 logger.info("🤖 Initializing middleware");
 

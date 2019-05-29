@@ -11,13 +11,15 @@
     "rollback": "knex migrate:rollback",
     "create": "knex migrate:make",
     "seed": "knex seed:run",
-    "reset": "npm run rollback && npm run latest && npm run seed"
+    "reset": "npm run rollback && npm run latest && npm run seed",
+    "lint": "eslint src"
   },
   "author": "",
   "devDependencies": {
     "faker": "^4.1.0",
     "jest": "^22.4.4",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "eslint": "^5.16.0"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

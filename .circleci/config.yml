@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: mkdir reports && mkdir reports/esliint
+      - run: mkdir reports && mkdir reports/eslint
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
@@ -20,5 +20,11 @@ jobs:
             - ~/.cache/yarn
       - run:
           name: lint
-          command: yarn lint
+          command: yarn lint:ci
+          environment:
+            ESLINT_REPORT: ./reports/eslint/eslint-results.xml
           when: always
+      - store_artifacts:
+          path: reports
+      - store_test_results:
+          path: reports

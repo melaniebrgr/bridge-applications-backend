@@ -1,4 +1,5 @@
 #!/bin/bash
 
-yarn run reset
+yarn run latest
+yarn run seed
 yarn start
